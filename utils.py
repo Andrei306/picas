@@ -1,7 +1,7 @@
 import math
 
 """Converts RGB (ex: (255, 0, 0)) to HEX string format (ex: '#FF0000'). Used to print the colour code in UI"""
-def rgb_to_text(rgb_tuple):
+def rgb_to_hex(rgb_tuple):
     return '#{:02x}{:02x}{:02x}'.format(rgb_tuple[0], rgb_tuple[1], rgb_tuple[2])
 
 """Find colour name and closest one from a list. Calculate Euclidian distance between the real and found colour"""
