@@ -25,18 +25,19 @@ def get_closest_color_name(requested_rgb):
         # --- Yellows ---
         (255, 255, 0): "Yellow",
         (240, 230, 140): "Khaki",
+        (107, 142, 35): "Olive Drab",
+        (128, 128, 0): "Olive",
 
         # --- Purples  ---
         (230, 230, 250): "Lavender",
         (216, 191, 216): "Thistle",
         (221, 160, 221): "Plum",
         (238, 130, 238): "Violet",
-        (128, 128, 0): "Olive",
         (218, 112, 214): "Orchid",
         (255, 0, 255): "Magenta",
-        (107, 142, 35): "Olive Drab",
         (186, 85, 211): "Medium Orchid",
         (147, 112, 219): "Medium Purple",
+        (170, 122, 158): "Dusty Purple",
         (138, 43, 226): "Blue Violet",
         (75, 0, 130): "Indigo",
         (128, 0, 128): "Purple",
@@ -66,7 +67,6 @@ def get_closest_color_name(requested_rgb):
         (0, 139, 139): "Dark Cyan",
         (54, 116, 125): "Petrol Blue",
         (0, 206, 209): "Dark Turquoise",
-        (43, 96, 108): "Dark Teal",
         (64, 224, 208): "Turquoise",
         (95, 158, 160): "Cadet Blue",
         (70, 130, 180): "Steel Blue",
@@ -100,7 +100,7 @@ def get_closest_color_name(requested_rgb):
     }
 
     min_distance = float('inf')
-    cloest_name = "Unknown"
+    closest_name = "Unknown"
 
     r_req, g_req, b_req = requested_rgb
 
@@ -110,6 +110,6 @@ def get_closest_color_name(requested_rgb):
 
         if distance < min_distance:
             min_distance = distance
-            cloest_name = name
+            closest_name = name
 
-    return cloest_name
+    return closest_name
