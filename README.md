@@ -1,2 +1,3 @@
 # picas
-PICAS - Palette Intelligent Color Analysis System
+PICAS - Palette Identifier and Color Analysis System
+
