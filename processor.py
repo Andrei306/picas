@@ -1,15 +1,29 @@
 import cv2
-import numpy as np
 from sklearn.cluster import KMeans
-from collections import Counter
 
-"""Image processing class - upload/redim/extract"""
+"""
+@file processor.py
+@brief Core logic for image processing and K-Means clustering (upload/redim/extract).
+"""
+
 class ImageProcessor:
+    """
+    @brief Handles image loading, resizing, and color extraction logic.
+    """
     def __init__(self):
+        """
+        @brief Initializes the processor with empty image states.
+        """
         self.image_path = None
         self.original_image = None # BGR image
         self.rgb_image = None # RGB image
 
+    """
+    @brief Loads an image via OpenCV and converts it from BGR to RGB.
+
+    @param path - String path to the image file.
+    @return bool - True if loaded successfully, False otherwise.
+    """
     def load_image(self, path):
         try:
             image = cv2.imread(path)
@@ -25,6 +39,12 @@ class ImageProcessor:
             print("Failed to load image:", e)
             return False
 
+    """
+    @brief Resizes the loaded image for GUI display, maintaining aspect ratio.
+
+    @param max_size - Tuple (width, height) defining maximum dimensions.
+    @return numpy.ndarray - Resized image array or None if no image loaded.
+    """
     def get_display_image(self, max_size=(400,400)):
         if self.rgb_image is None:
             return None
@@ -37,7 +57,12 @@ class ImageProcessor:
         resized = cv2.resize(self.rgb_image, (new_w, new_h), interpolation = cv2.INTER_AREA)
         return resized
 
-    # Using K-Means to find the dominant colours
+    """
+    @brief Extracts dominant colors using K-Means clustering.
+
+    @param n_colors - Number of colors to extract (default 5).
+    @return list - List of RGB tuples representing dominant colors.
+    """
     def extract_palette(self, n_colors=5):
         if self.rgb_image is None:
             return []
