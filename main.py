@@ -1,8 +1,7 @@
 import tkinter as tk
-from gui import picasApp
-
+from gui import PicasApp
 # Run the app
 if __name__ == '__main__':
     root = tk.Tk() # main window
-    app = picasApp(root) # init app
+    app = PicasApp(root) # init app
     root.mainloop()  # event loop
