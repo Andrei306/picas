@@ -60,7 +60,7 @@ class picasApp:
         header_frame = tk.Frame(self.root, pady=10)
         header_frame.pack()
 
-        btn_load = tk.Button(header_frame, text="Uplaod Image", command=self.upload_image,
+        btn_load = tk.Button(header_frame, text="Upload Image", command=self.upload_image,
                              bg="#4a90e2", fg="white", font=("Arial", 12, "bold"))
         btn_load.pack()
 
