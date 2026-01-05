@@ -29,7 +29,7 @@ class PicasApp:
         self.root.geometry("900x600")
         self.processor = ImageProcessor()
 
-        # --- FIX TTS 1: Configurare Coada si Motor ---
+        # --- FIX TTS 1: configure queue & engine ---
         self.speech_queue = queue.Queue()
         self.tts_engine = None
 
@@ -57,7 +57,7 @@ class PicasApp:
                 if text is None:
                     break
 
-                #speak the text
+                # speak the text
                 try:
                     engine.say(text)
                     engine.runAndWait()
