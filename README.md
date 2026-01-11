@@ -10,7 +10,7 @@ PICAS - Palette Identifier and Color Analysis System
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/Andrei306/picas.git](https://github.com/Andrei306/picas.git)
+   git clone https://github.com/Andrei306/picas.git
    cd picas
 
 2. **Install dependencies**
@@ -29,4 +29,4 @@ PICAS - Palette Identifier and Color Analysis System
 - utils.py: contains mathematical formulas and the color database.
 
 ***
-Project developed for the Human-Computer Interaction (IOM) Laboratory.
+Project developed for the Human-Computer Interaction laboratory.
