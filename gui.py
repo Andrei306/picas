@@ -155,7 +155,7 @@ class PicasApp:
     @param hex_code - The HEX code (for debugging/logging).
     """
     def speak_color(self, name, hex_code):
-        print(f"User clicked: {name} ({hex_code}")  # debugging
+        print(f"User clicked: {name} ({hex_code})")  # debugging
 
         text_to_say = f"{name}"
 

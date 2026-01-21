@@ -1,5 +1,7 @@
 import cv2
+import numpy as np
 from sklearn.cluster import KMeans
+from collections import Counter 
 
 """
 @file processor.py
@@ -58,22 +60,33 @@ class ImageProcessor:
         return resized
 
     """
-    @brief Extracts dominant colors using K-Means clustering.
-
-    @param n_colors - Number of colors to extract (default 5).
+    @brief Extracts dominant colors using K-Means with Oversampling.
+    
+    Generates more clusters than requested to capture nuance, then selects
+    the top dominant ones based on pixel frequency.
+    
+    @param n_colors - Number of final colors to extract (default 5).
     @return list - List of RGB tuples representing dominant colors.
     """
     def extract_palette(self, n_colors=5):
         if self.rgb_image is None:
             return []
 
-        small_image = cv2.resize(self.rgb_image, (100, 100), interpolation = cv2.INTER_AREA)
+        small_image = cv2.resize(self.rgb_image, (100, 100), interpolation=cv2.INTER_AREA)
         pixels = small_image.reshape(-1, 3)
+        n_candidates = n_colors * 3
+        
+        kmeans = KMeans(n_clusters=n_candidates, random_state=42, n_init=10)
+        labels = kmeans.fit_predict(pixels)
 
-        kmeans = KMeans(n_clusters=n_colors, random_state=42, n_init=10)
-        kmeans.fit(pixels)
+        counts = Counter(labels)
+        
+        most_common_clusters = counts.most_common(n_colors)
+        
+        dominant_colors = []
+        for cluster_index, count in most_common_clusters:
+            center = kmeans.cluster_centers_[cluster_index] #centroid of the cluster
+            dominant_colors.append(center)
 
-        colors = kmeans.cluster_centers_
-        colors = colors.round(0).astype(int)
-
-        return [tuple(color) for color in colors]
+        dominant_colors = np.array(dominant_colors).round(0).astype(int)
+        return [tuple(color) for color in dominant_colors]
